@@ -1,0 +1,98 @@
+<div class="relative p-14">
+  <form [formGroup]="livrosForm" (ngSubmit)="onSubmit()">
+    <div class="grid gap-6 mb-6 md:grid-cols-2">
+      <div>
+        <label
+          for="titulo"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Titulo</label
+        >
+        <input
+          type="text"
+          id="titulo"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="titulo"
+          formControlName="titulo"
+        />
+      </div>
+
+      <div>
+        <label
+          for="categoria"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >Categoria</label
+        >
+        <input
+          type="text"
+          id="categoria"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="categoria"
+          formControlName="categoria"
+        />
+      </div>
+    </div>
+
+    <button
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      Submit
+    </button>
+  </form>
+
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-8">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">livro Id</th>
+          <th scope="col" class="px-6 py-3">titulo</th>
+          <th scope="col" class="px-6 py-3">categoria</th>
+          <th scope="col" class="px-6 py-3">
+            <span class="sr-only">Edit</span>
+          </th>
+          <th scope="col" class="px-6 py-3">
+            <span class="sr-only">close</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let livro of livros"
+          class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            {{ livro.tituloId }}
+          </th>
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+          >
+            {{ livro.titulo }}
+          </th>
+          <td class="px-6 py-4">{{ livro.categoria }}</td>
+          <td class="px-6 py-4 text-right">
+            <span
+            (click)="showModal();onSelect(livro)"
+            class="font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer"
+              >Edit</span
+            >
+          </td>
+          <td class="px-6 py-4 text-right">
+            <span
+            (click)="deleteBook(livro);"
+            class="font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer"
+              >x</span
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div *ngIf="modal" class="absolute w-full h-full bg-[rgba(0,0,0,0.8)] top-0 ">
+  <app-edit-form (closeModalEvent)="closeModal($event)" [livro]="livro"></app-edit-form>
+</div>
