@@ -28,6 +28,9 @@ Esse é um sistema de gerenciamento de uma livraria feito com framework Angular 
 
 ## Editar Livro
 
+![Alt text](./public/editar-livro.png?raq=true "editar-livro")
+
+## Deletar Livro
 ![Alt text](./public/deletar-livro1.png?raw=true "deletar-livro1")
 ![Alt text](./public/deletar-livro2.png?raw=true "deletar-livro2")
 
