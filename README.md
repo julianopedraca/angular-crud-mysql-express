@@ -1,7 +1,5 @@
 # Sistema de Gerenciamento de Livro
 
-This is a Book Management System application built with Angular on the frontend and a backend API for managing books.
-
 Esse é um sistema de gerenciamento de uma livraria feito com framework Angular no frontend e no backend foi aplicado uma API feita em express
 
 ## Recursos
