@@ -11,16 +11,25 @@ export class AppComponent implements OnInit {
 
   modal = false;
 
+  alert = false;
+
   livros: any[] = [];
+
+  categorias: any[] = [];
 
   livro:any
 
   constructor(private appService: AppService) {}
 
   ngOnInit() {
-    this.appService.getBooks().subscribe((data: any) => {
-      this.livros = data;
+    this.appService.getBooks().subscribe((livro: any) => {
+      this.livros = livro;
     });
+
+    this.appService.getCategories().subscribe((categoria: any) => {
+      this.categorias = categoria
+      console.log(this.categorias)
+    })
   }
 
   livrosForm = new FormGroup({
@@ -50,7 +59,18 @@ export class AppComponent implements OnInit {
     const livro = {
       id: item.tituloId
     };
-    this.appService.deleteBook(livro).subscribe((data) => console.log(data));
+    this.appService.deleteBook(livro).subscribe();
+  }
+
+  showAlert(value: any){
+    this.alert = value
+    setTimeout(() => {
+      this.alert = false;
+    }, 1000);
+  }
+
+  closeAlert() {
+    this.alert = false;
   }
   
 }

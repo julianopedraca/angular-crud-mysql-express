@@ -10,6 +10,7 @@ import { AppService } from 'src/app/app.service';
 export class EditFormComponent{
 
   @Output() closeModalEvent = new EventEmitter();
+  @Output() openAlertEvent = new EventEmitter();
   @Input() livro: any;
   
   constructor(private appService: AppService) {}
@@ -25,10 +26,17 @@ export class EditFormComponent{
       categoria: this.editForm.value.categoria,
       titulo: this.editForm.value.titulo,
       id: this.livro.tituloId,
-    }).subscribe()
+    }).subscribe(() => {
+      this.closeModal()
+      this.openAlert()
+    })
   }
 
   closeModal(){
     this.closeModalEvent.emit(false)
+  }
+
+  openAlert(){
+    this.openAlertEvent.emit(true)
   }
 }

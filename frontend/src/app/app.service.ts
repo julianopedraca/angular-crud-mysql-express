@@ -27,4 +27,8 @@ export class AppService {
     };
     return this.http.delete(`${this.API}/deletalivro`, options);
   }
+
+  getCategories(){
+    return this.http.get(`${this.API}/imprimecategorias`)
+  }
 }

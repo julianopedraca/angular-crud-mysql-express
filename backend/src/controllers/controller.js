@@ -13,6 +13,19 @@ function checkBook(req, res) {
   });
 }
 
+function addCategorie(req, res) {
+  const  body  = req.body
+  const { categoria } = body;
+
+  const query = "INSERT INTO categorias (categoria) VALUES (?)"
+  connection.query(query,[categoria], (err, results) =>{
+    if (err) {
+      return res.status(500).json(err)
+    }
+    return res.status(200).json({ message: "categoria adicionada"})
+  })
+}
+
 function addBook(req, res) {
   const body = req.body;
   const { categoria, titulo } = body;
@@ -97,9 +110,18 @@ function deleteBook(req, res) {
   });
 }
 
+function getCategories(req, res) {
+  const query = "SELECT DISTINCT categoria FROM categorias"
+  connection.query(query,(err, results) => {
+    return res.status(200).json(results)
+  })
+}
+
 module.exports = {
   addBook,
   updateBook,
   deleteBook,
   checkBook,
+  getCategories,
+  addCategorie
 };
